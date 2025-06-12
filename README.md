@@ -1,6 +1,4 @@
-
-
-Highlights:
+KEY FEATURES:
 
 - 🚀 Tech stack: Next.js 15 + Convex + Clerk + TypeScript
 - 💻 Online IDE with multi-language support (10 languages)
@@ -15,9 +13,3 @@ Highlights:
 - 🔗 Webhook integration support
 - 🌟 Professional deployment walkthrough
 
-
-### Run the app
-
-```shell
-npm run dev
-```
