@@ -1,5 +1,7 @@
 import { Monaco } from "@monaco-editor/react";
 import { Theme } from "../../../types";
+import * as monaco from "monaco-editor";
+
 
 type LanguageConfig = Record<
   string,
@@ -417,7 +419,7 @@ export const THEME_DEFINITONS = {
       "editor.selectionHighlightBackground": "#073642",
     },
   },
-};
+}; 
 
 // Helper function to define themes in Monaco
 export const defineMonacoThemes = (monaco: Monaco) => {

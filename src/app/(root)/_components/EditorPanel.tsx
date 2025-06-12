@@ -2,14 +2,14 @@
 import { useCodeEditorStore } from "@/store/useCodeEditorStore";
 import { useEffect, useState } from "react";
 import { defineMonacoThemes, LANGUAGE_CONFIG } from "../_constants";
-import { Editor } from "@monaco-editor/react";
+import { Editor } from "@monaco-editor/react";  
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
-import ShareSnippetDialog from "./ShareSnippetDialog";
+import ShareSnippetDialog from "./ShareSnippetDialog";  
 
 function EditorPanel() {
   const clerk = useClerk();

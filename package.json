@@ -15,11 +15,12 @@
     "framer-motion": "^12.17.0",
     "geist": "^1.4.2",
     "lucide-react": "^0.514.0",
+    "monaco-editor": "^0.52.2",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
-    "react-syntax-highlighter": "^15.6.1",
+    "react-syntax-highlighter": "^5.8.0",
     "svix": "^1.67.0",
     "zustand": "^5.0.5"
   },
