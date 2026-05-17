@@ -16,4 +16,8 @@ export default function UpgradeButton() {
       Upgrade to Pro
     </Link>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

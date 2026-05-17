@@ -89,4 +89,8 @@ function OutputPanel() {
   );
 }
 
+<<<<<<< HEAD
 export default OutputPanel;
+=======
+export default OutputPanel;
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

@@ -42,4 +42,8 @@ export const FEATURES = {
     "Container support",
     "Custom domain mapping",
   ],
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

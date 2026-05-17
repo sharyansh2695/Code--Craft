@@ -1,7 +1,11 @@
 {
   /* This TypeScript project config describes the environment that
    * Convex functions run in and is used to typecheck them.
+<<<<<<< HEAD
    * You can modify it, but some settings are required to use Convex.
+=======
+   * You can modify it, but some settings required to use Convex.
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
    */
   "compilerOptions": {
     /* These settings are not required by Convex and can be modified. */

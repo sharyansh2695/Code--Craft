@@ -41,4 +41,8 @@ const CodeBlock = ({ language, code }: { language: string; code: string }) => {
   );
 };
 
+<<<<<<< HEAD
 export default CodeBlock;
+=======
+export default CodeBlock;
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

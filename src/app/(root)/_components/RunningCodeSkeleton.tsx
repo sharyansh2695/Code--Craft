@@ -14,4 +14,8 @@ const RunningCodeSkeleton = () => (
   </div>
 );
 
+<<<<<<< HEAD
 export default RunningCodeSkeleton;
+=======
+export default RunningCodeSkeleton;
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

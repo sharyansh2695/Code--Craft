@@ -1,8 +1,11 @@
 import { Monaco } from "@monaco-editor/react";
 import { Theme } from "../../../types";
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
 type LanguageConfig = Record<
   string,
   {
@@ -419,7 +422,11 @@ export const THEME_DEFINITONS = {
       "editor.selectionHighlightBackground": "#073642",
     },
   },
+<<<<<<< HEAD
 }; 
+=======
+};
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
 
 // Helper function to define themes in Monaco
 export const defineMonacoThemes = (monaco: Monaco) => {
@@ -434,4 +441,8 @@ export const defineMonacoThemes = (monaco: Monaco) => {
       colors: themeData.colors,
     });
   });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

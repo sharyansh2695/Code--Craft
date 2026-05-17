@@ -3,4 +3,8 @@
   "rules": {
     "@next/next/no-img-element": "off"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

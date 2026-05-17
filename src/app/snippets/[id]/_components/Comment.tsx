@@ -49,4 +49,8 @@ function Comment({ comment, currentUserId, isDeleting, onDelete }: CommentProps)
     </div>
   );
 }
+<<<<<<< HEAD
 export default Comment;
+=======
+export default Comment;
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886

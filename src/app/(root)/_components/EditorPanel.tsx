@@ -2,14 +2,22 @@
 import { useCodeEditorStore } from "@/store/useCodeEditorStore";
 import { useEffect, useState } from "react";
 import { defineMonacoThemes, LANGUAGE_CONFIG } from "../_constants";
+<<<<<<< HEAD
 import { Editor } from "@monaco-editor/react";  
+=======
+import { Editor } from "@monaco-editor/react";
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
+<<<<<<< HEAD
 import ShareSnippetDialog from "./ShareSnippetDialog";  
+=======
+import ShareSnippetDialog from "./ShareSnippetDialog";
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
 
 function EditorPanel() {
   const clerk = useClerk();
@@ -145,4 +153,8 @@ function EditorPanel() {
     </div>
   );
 }
+<<<<<<< HEAD
 export default EditorPanel;
+=======
+export default EditorPanel;
+>>>>>>> d2efcd745807296654e57a365c594d0340d88886
