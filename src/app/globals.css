@@ -1,6 +1,5 @@
+/* Replace your old @tailwind directives with just this single line: */
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 :root {

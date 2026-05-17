@@ -166,4 +166,4 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
   );
 }
 export default ProfileHeader;
-export default ProfileHeader;
+

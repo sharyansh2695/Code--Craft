@@ -6,4 +6,4 @@ const FeatureCategory = ({ children, label }: { children: React.ReactNode; label
 );
 
 export default FeatureCategory;
-export default FeatureCategory;
+

@@ -136,4 +136,4 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
   );
 }
 export default SnippetCard;
-export default SnippetCard;
+

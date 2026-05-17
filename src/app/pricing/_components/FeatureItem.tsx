@@ -10,4 +10,4 @@ const FeatureItem = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default FeatureItem;
-export default FeatureItem;
+

@@ -43,4 +43,4 @@ export const FEATURES = {
     "Custom domain mapping",
   ],
 };
-};
+
