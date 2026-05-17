@@ -81,8 +81,5 @@ function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
     </div>
   );
 }
-<<<<<<< HEAD
+
 export default Comments;
-=======
-export default Comments;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

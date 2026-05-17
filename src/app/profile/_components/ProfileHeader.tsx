@@ -165,8 +165,5 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
     </div>
   );
 }
-<<<<<<< HEAD
 export default ProfileHeader;
-=======
 export default ProfileHeader;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

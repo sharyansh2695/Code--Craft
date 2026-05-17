@@ -27,8 +27,5 @@ function Footer() {
     </footer>
   );
 }
-<<<<<<< HEAD
 export default Footer;
-=======
-export default Footer;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
+

@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "code-space",
-=======
   "name": "code-craft",
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@clerk/nextjs": "^6.21.0",
     "@monaco-editor/react": "^4.7.0",
     "convex": "^1.24.8",
@@ -21,51 +16,27 @@
     "geist": "^1.4.2",
     "lucide-react": "^0.514.0",
     "monaco-editor": "^0.52.2",
-    "next": "15.3.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^15.3.2",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "react-hot-toast": "^2.5.2",
-    "react-syntax-highlighter": "^5.8.0",
+    "react-syntax-highlighter": "^16.1.1",
     "svix": "^1.67.0",
     "uuid": "^14.0.0",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.5.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "postcss": "^8.5.5",
     "tailwindcss": "^4.1.10",
-=======
-    "@clerk/nextjs": "^6.6.0",
-    "@monaco-editor/react": "^4.6.0",
-    "convex": "^1.17.3",
-    "framer-motion": "^11.13.1",
-    "lucide-react": "^0.464.0",
-    "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "react-hot-toast": "^2.4.1",
-    "react-syntax-highlighter": "^15.6.1",
-    "svix": "^1.42.0",
-    "zustand": "^5.0.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
-    "typescript": "^5"
+    "typescript": "^5.5.4"
   }
 }

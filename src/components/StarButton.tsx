@@ -36,8 +36,5 @@ function StarButton({ snippetId }: { snippetId: Id<"snippets"> }) {
   );
 }
 
-<<<<<<< HEAD
+
 export default StarButton;
-=======
-export default StarButton;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

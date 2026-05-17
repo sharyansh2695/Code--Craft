@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 //code execution snippets everything here
 
-=======
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
@@ -47,8 +44,5 @@ export default defineSchema({
     .index("by_user_id", ["userId"])
     .index("by_snippet_id", ["snippetId"])
     .index("by_user_id_and_snippet_id", ["userId", "snippetId"]),
-<<<<<<< HEAD
 });
-=======
 });
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

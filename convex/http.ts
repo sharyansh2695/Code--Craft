@@ -106,8 +106,5 @@ http.route({
   }),
 });
 
-<<<<<<< HEAD
 export default http;
-=======
 export default http;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

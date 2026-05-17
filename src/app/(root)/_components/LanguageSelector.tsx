@@ -167,8 +167,4 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
     </div>
   );
 }
-<<<<<<< HEAD
 export default LanguageSelector;
-=======
-export default LanguageSelector;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

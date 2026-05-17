@@ -79,8 +79,5 @@ function NavigationHeader() {
   );
 }
 
-<<<<<<< HEAD
+
 export default NavigationHeader;
-=======
-export default NavigationHeader;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

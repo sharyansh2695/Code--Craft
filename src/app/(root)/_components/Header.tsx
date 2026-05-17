@@ -104,8 +104,5 @@ async function Header() {
     </div>
   );
 }
-<<<<<<< HEAD
 export default Header;
-=======
-export default Header;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
+

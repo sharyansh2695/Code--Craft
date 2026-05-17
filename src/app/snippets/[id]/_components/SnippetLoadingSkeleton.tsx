@@ -43,8 +43,5 @@ function SnippetLoadingSkeleton() {
     </div>
   );
 }
-<<<<<<< HEAD
+
 export default SnippetLoadingSkeleton;
-=======
-export default SnippetLoadingSkeleton;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

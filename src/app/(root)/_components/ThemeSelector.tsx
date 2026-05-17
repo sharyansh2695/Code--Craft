@@ -130,8 +130,5 @@ function ThemeSelector() {
     </div>
   );
 }
-<<<<<<< HEAD
 export default ThemeSelector;
-=======
-export default ThemeSelector;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
+

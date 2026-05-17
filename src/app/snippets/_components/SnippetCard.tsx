@@ -135,8 +135,5 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
     </motion.div>
   );
 }
-<<<<<<< HEAD
 export default SnippetCard;
-=======
 export default SnippetCard;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

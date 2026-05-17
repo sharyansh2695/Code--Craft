@@ -1,35 +1,40 @@
 "use client";
+
 import { useCodeEditorStore } from "@/store/useCodeEditorStore";
 import { useEffect, useState } from "react";
 import { defineMonacoThemes, LANGUAGE_CONFIG } from "../_constants";
-<<<<<<< HEAD
-import { Editor } from "@monaco-editor/react";  
-=======
 import { Editor } from "@monaco-editor/react";
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
-<<<<<<< HEAD
-import ShareSnippetDialog from "./ShareSnippetDialog";  
-=======
 import ShareSnippetDialog from "./ShareSnippetDialog";
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
 
 function EditorPanel() {
   const clerk = useClerk();
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false);
-  const { language, theme, fontSize, editor, setFontSize, setEditor } = useCodeEditorStore();
+
+  const {
+    language,
+    theme,
+    fontSize,
+    editor,
+    setFontSize,
+    setEditor,
+  } = useCodeEditorStore();
 
   const mounted = useMounted();
 
   useEffect(() => {
+    if (!editor) return;
+
     const savedCode = localStorage.getItem(`editor-code-${language}`);
-    const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
-    if (editor) editor.setValue(newCode);
+    const newCode =
+      savedCode ?? LANGUAGE_CONFIG[language].defaultCode;
+
+    editor.setValue(newCode);
   }, [language, editor]);
 
   useEffect(() => {
@@ -44,7 +49,10 @@ function EditorPanel() {
   };
 
   const handleEditorChange = (value: string | undefined) => {
-    if (value) localStorage.setItem(`editor-code-${language}`, value);
+    localStorage.setItem(
+      `editor-code-${language}`,
+      value ?? ""
+    );
   };
 
   const handleFontSizeChange = (newSize: number) => {
@@ -62,13 +70,23 @@ function EditorPanel() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#1e1e2e] ring-1 ring-white/5">
-              <Image src={"/" + language + ".png"} alt="Logo" width={24} height={24} />
+              <Image
+                src={"/" + language + ".png"}
+                alt="Logo"
+                width={24}
+                height={24}
+              />
             </div>
             <div>
-              <h2 className="text-sm font-medium text-white">Code Editor</h2>
-              <p className="text-xs text-gray-500">Write and execute your code</p>
+              <h2 className="text-sm font-medium text-white">
+                Code Editor
+              </h2>
+              <p className="text-xs text-gray-500">
+                Write and execute your code
+              </p>
             </div>
           </div>
+
           <div className="flex items-center gap-3">
             {/* Font Size Slider */}
             <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
@@ -79,7 +97,9 @@ function EditorPanel() {
                   min="12"
                   max="24"
                   value={fontSize}
-                  onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}
+                  onChange={(e) =>
+                    handleFontSizeChange(parseInt(e.target.value))
+                  }
                   className="w-20 h-1 bg-gray-600 rounded-lg cursor-pointer"
                 />
                 <span className="text-sm font-medium text-gray-400 min-w-[2rem] text-center">
@@ -103,21 +123,24 @@ function EditorPanel() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setIsShareDialogOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r
-               from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
             >
               <ShareIcon className="size-4 text-white" />
-              <span className="text-sm font-medium text-white ">Share</span>
+              <span className="text-sm font-medium text-white">
+                Share
+              </span>
             </motion.button>
           </div>
         </div>
 
-        {/* Editor  */}
+        {/* Editor */}
         <div className="relative group rounded-xl overflow-hidden ring-1 ring-white/[0.05]">
           {clerk.loaded && (
             <Editor
               height="600px"
-              language={LANGUAGE_CONFIG[language].monacoLanguage}
+              language={
+                LANGUAGE_CONFIG[language].monacoLanguage
+              }
               onChange={handleEditorChange}
               theme={theme}
               beforeMount={defineMonacoThemes}
@@ -129,7 +152,8 @@ function EditorPanel() {
                 scrollBeyondLastLine: false,
                 padding: { top: 16, bottom: 16 },
                 renderWhitespace: "selection",
-                fontFamily: '"Fira Code", "Cascadia Code", Consolas, monospace',
+                fontFamily:
+                  '"Fira Code", "Cascadia Code", Consolas, monospace',
                 fontLigatures: true,
                 cursorBlinking: "smooth",
                 smoothScrolling: true,
@@ -149,12 +173,14 @@ function EditorPanel() {
           {!clerk.loaded && <EditorPanelSkeleton />}
         </div>
       </div>
-      {isShareDialogOpen && <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />}
+
+      {isShareDialogOpen && (
+        <ShareSnippetDialog
+          onClose={() => setIsShareDialogOpen(false)}
+        />
+      )}
     </div>
   );
 }
-<<<<<<< HEAD
+
 export default EditorPanel;
-=======
-export default EditorPanel;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

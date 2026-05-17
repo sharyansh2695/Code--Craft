@@ -101,8 +101,5 @@ function CommentForm({ isSubmitting, onSubmit }: CommentFormProps) {
     </form>
   );
 }
-<<<<<<< HEAD
+
 export default CommentForm;
-=======
-export default CommentForm;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

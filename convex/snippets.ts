@@ -223,8 +223,5 @@ export const getStarredSnippets = query({
 
     return snippets.filter((snippet) => snippet !== null);
   },
-<<<<<<< HEAD
 });
-=======
 });
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

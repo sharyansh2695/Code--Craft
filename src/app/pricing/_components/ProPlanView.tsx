@@ -40,8 +40,5 @@ function ProPlanView() {
     </div>
   );
 }
-<<<<<<< HEAD
 export default ProPlanView;
-=======
 export default ProPlanView;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886

@@ -56,8 +56,5 @@ function ProfileHeaderSkeleton() {
   );
 }
 
-<<<<<<< HEAD
 export default ProfileHeaderSkeleton;
-=======
 export default ProfileHeaderSkeleton;
->>>>>>> d2efcd745807296654e57a365c594d0340d88886
