@@ -143,13 +143,13 @@ export const THEME_DEFINITONS = {
       "editor.background": "#0d1117",
       "editor.foreground": "#c9d1d9",
     },
-  },
+  },  
 };
 
 export const defineMonacoThemes = (monaco: Monaco) => {
   Object.entries(THEME_DEFINITONS).forEach(([themeName, themeData]) => {
     monaco.editor.defineTheme(themeName, {
-      base: themeData.base as monaco.editor.BuiltinTheme,
+      base: themeData.base as editor.BuiltinTheme,
       inherit: themeData.inherit,
       rules: themeData.rules,
       colors: themeData.colors,

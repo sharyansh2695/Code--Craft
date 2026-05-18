@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
         break;
     }
 
-    return new Promise((resolve)=>{
+    return new Promise<Response>((resolve) => {
 
       exec(
         command,
@@ -109,13 +109,16 @@ export async function POST(req: NextRequest) {
     });
 
   }
-  catch(error:any){
+  catch(error:unknown){
 
     return NextResponse.json({
-      run:{
-        output:error.message
-      }
-    });
+  run:{
+    output:
+      error instanceof Error
+      ? error.message
+      : "Unknown error"
+  }
+});
 
   }
 }

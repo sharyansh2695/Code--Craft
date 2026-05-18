@@ -224,4 +224,3 @@ export const getStarredSnippets = query({
     return snippets.filter((snippet) => snippet !== null);
   },
 });
-});

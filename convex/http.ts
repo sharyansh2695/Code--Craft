@@ -107,4 +107,3 @@ http.route({
 });
 
 export default http;
-export default http;

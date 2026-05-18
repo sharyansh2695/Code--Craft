@@ -67,4 +67,3 @@ export const upgradeToPro = mutation({
     return { success: true };
   },
 });
-});

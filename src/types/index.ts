@@ -1,35 +1,5 @@
-import { Monaco } from "@monaco-editor/react";
+import { editor } from "monaco-editor";
 import { Id } from "../../convex/_generated/dataModel";
-
-export interface Theme {
-  id: string;
-  label: string;
-  color: string;
-}
-
-export interface Language {
-  id: string;
-  label: string;
-  logoPath: string;
-  monacoLanguage: string;
-  defaultCode: string;
-  pistonRuntime: LanguageRuntime;
-}
-
-export interface LanguageRuntime {
-  language: string;
-  version: string;
-}
-
-export interface ExecuteCodeResponse {
-  compile?: {
-    output: string;
-  };
-  run?: {
-    output: string;
-    stderr: string;
-  };
-}
 
 export interface ExecutionResult {
   code: string;
@@ -39,29 +9,50 @@ export interface ExecutionResult {
 
 export interface CodeEditorState {
   language: string;
+  fontSize: number;
+  theme: string;
+
   output: string;
   isRunning: boolean;
   error: string | null;
-  theme: string;
-  fontSize: number;
-  editor: Monaco | null;
+
+  editor: editor.IStandaloneCodeEditor | null;
+
   executionResult: ExecutionResult | null;
 
-  setEditor: (editor: Monaco) => void;
   getCode: () => string;
-  setLanguage: (language: string) => void;
-  setTheme: (theme: string) => void;
-  setFontSize: (fontSize: number) => void;
+
+  setEditor: (
+    editor: editor.IStandaloneCodeEditor
+  ) => void;
+
+  setTheme: (
+    theme: string
+  ) => void;
+
+  setFontSize: (
+    fontSize: number
+  ) => void;
+
+  setLanguage: (
+    language: string
+  ) => void;
+
   runCode: () => Promise<void>;
+}
+
+export interface Theme {
+  id: string;
+  label: string;
+  color: string;
 }
 
 export interface Snippet {
   _id: Id<"snippets">;
   _creationTime: number;
-  userId: string;
+  title: string;
   language: string;
   code: string;
-  title: string;
+  userId: string;
   userName: string;
-}
 }

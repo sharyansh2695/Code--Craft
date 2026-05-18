@@ -1,6 +1,4 @@
-/* Replace your old @tailwind directives with just this single line: */
 @import "tailwindcss";
-@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -24,7 +22,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
