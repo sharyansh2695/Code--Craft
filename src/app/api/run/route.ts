@@ -48,15 +48,12 @@ export async function POST(req: NextRequest) {
       "https://emkc.org/api/v2/piston/execute",
       {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           language: runtime.language,
           version: runtime.version,
-
           files: [
             {
               content: code,
@@ -68,12 +65,17 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
 
+    const output =
+      data.run?.stdout ||
+      data.run?.stderr ||
+      data.compile?.stdout ||
+      data.compile?.stderr ||
+      data.compile?.output ||
+      "No output";
+
     return NextResponse.json({
       run: {
-        output:
-          data.run?.output ||
-          data.compile?.output ||
-          "No output",
+        output,
       },
     });
 
