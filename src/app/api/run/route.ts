@@ -1,92 +1,121 @@
 import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
+import { exec } from "child_process";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: NextRequest) {
   try {
+
     const { language, code } = await req.json();
 
-    const languageMap: Record<
-      string,
-      { language: string; version: string }
-    > = {
-      javascript: {
-        language: "javascript",
-        version: "18.15.0",
-      },
+    const id = uuidv4();
 
-      python: {
-        language: "python",
-        version: "3.10.0",
-      },
+    let fileName = "";
+    let command = "";
 
-      java: {
-        language: "java",
-        version: "15.0.2",
-      },
+    switch (language) {
 
-      typescript: {
-        language: "typescript",
-        version: "5.0.3",
-      },
+      case "javascript":
+        fileName = `${id}.js`;
+        break;
 
-      go: {
-        language: "go",
-        version: "1.16.2",
-      },
-    };
+      case "python":
+        fileName = `${id}.py`;
+        break;
 
-    const runtime = languageMap[language];
+      case "cpp":
+        fileName = `${id}.cpp`;
+        break;
 
-    if (!runtime) {
-      return NextResponse.json({
-        run: {
-          output: "Unsupported language",
-        },
-      });
+      case "java":
+        fileName = `Main.java`;
+        break;
+
+      default:
+        return NextResponse.json({
+          run: {
+            output: "Unsupported language"
+          }
+        });
+
     }
 
-    const response = await fetch(
-      "https://emkc.org/api/v2/piston/execute",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          language: runtime.language,
-          version: runtime.version,
-          files: [
-            {
-              content: code,
-            },
-          ],
-        }),
-      }
+    const filePath = path.join(
+      process.cwd(),
+      "temp",
+      fileName
     );
 
-    const data = await response.json();
+    fs.writeFileSync(filePath, code);
 
-    const output =
-      data.run?.stdout ||
-      data.run?.stderr ||
-      data.compile?.stdout ||
-      data.compile?.stderr ||
-      data.compile?.output ||
-      "No output";
+    // ===============================
+    // ONLY CHANGE: DOCKER EXECUTION
+    // ===============================
+    switch (language) {
+
+      case "javascript":
+        command = `docker run --rm -v ${process.cwd()}/temp:/app node:18 node /app/${fileName}`;
+        break;
+
+      case "python":
+        command = `docker run --rm -v ${process.cwd()}/temp:/app python:3.10 python /app/${fileName}`;
+        break;
+
+      case "cpp":
+        command =
+          `docker run --rm -v ${process.cwd()}/temp:/app gcc:latest sh -c "g++ /app/${fileName} -o /app/a.out && /app/a.out"`;
+        break;
+
+      case "java":
+        command =
+          `docker run --rm -v ${process.cwd()}/temp:/app openjdk:17 sh -c "javac /app/${fileName} && java -cp /app Main"`;
+        break;
+
+    }
+
+    return new Promise<Response>((resolve) => {
+
+      exec(
+        command,
+        { timeout: 3000 },
+
+        (error, stdout, stderr) => {
+
+          try {
+            fs.unlinkSync(filePath);
+          } catch {}
+
+          resolve(
+            NextResponse.json({
+              run: {
+               output:
+  error
+    ? (stderr || error.message || "")
+        .toString()
+        .split("\n")
+        .filter(line =>
+          !line.includes("internal") &&
+          !line.includes("Module._compile") &&
+          !line.includes("at ")
+        )
+        .join("\n")
+    : stdout.toString()
+              }
+            })
+          );
+        }
+      );
+
+    });
+
+  } catch (error: any) {
 
     return NextResponse.json({
       run: {
-        output,
-      },
+        output: error.message
+      }
     });
 
-  } catch (error: unknown) {
-    return NextResponse.json({
-      run: {
-        output:
-          error instanceof Error
-            ? error.message
-            : "Unknown error",
-      },
-    });
   }
 }
