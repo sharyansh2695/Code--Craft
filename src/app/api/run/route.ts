@@ -41,13 +41,21 @@ export async function POST(req: NextRequest) {
 
     }
 
-    const filePath = path.join(
-      process.cwd(),
-      "temp",
-      fileName
-    );
+    const tempDir = path.join(
+  process.cwd(),
+  "temp"
+);
 
-    fs.writeFileSync(filePath, code);
+if (!fs.existsSync(tempDir)) {
+  fs.mkdirSync(tempDir, { recursive: true });
+}
+
+const filePath = path.join(
+  tempDir,
+  fileName
+);
+
+fs.writeFileSync(filePath, code);
 
     // ===============================
     // ONLY CHANGE: DOCKER EXECUTION
