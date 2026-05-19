@@ -5,6 +5,7 @@ import { exec } from "child_process";
 import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: NextRequest) {
+
   try {
 
     const { language, code } = await req.json();
@@ -13,6 +14,9 @@ export async function POST(req: NextRequest) {
 
     let fileName = "";
     let command = "";
+
+    // Detect Render deployment
+    const isRender = process.env.RENDER === "true";
 
     switch (language) {
 
@@ -33,6 +37,7 @@ export async function POST(req: NextRequest) {
         break;
 
       default:
+
         return NextResponse.json({
           run: {
             output: "Unsupported language"
@@ -41,43 +46,69 @@ export async function POST(req: NextRequest) {
 
     }
 
-    const tempDir = path.join(
-  process.cwd(),
-  "temp"
-);
+    // ===============================
+    // TEMP DIRECTORY
+    // ===============================
 
-if (!fs.existsSync(tempDir)) {
-  fs.mkdirSync(tempDir, { recursive: true });
-}
+    const tempDir = isRender
+      ? "/tmp"
+      : path.join(process.cwd(), "temp");
 
-const filePath = path.join(
-  tempDir,
-  fileName
-);
+    if (!fs.existsSync(tempDir)) {
 
-fs.writeFileSync(filePath, code);
+      fs.mkdirSync(
+        tempDir,
+        { recursive: true }
+      );
+
+    }
+
+    const filePath = path.join(
+      tempDir,
+      fileName
+    );
+
+    fs.writeFileSync(
+      filePath,
+      code
+    );
 
     // ===============================
-    // ONLY CHANGE: DOCKER EXECUTION
+    // EXECUTION
     // ===============================
+
     switch (language) {
 
       case "javascript":
-        command = `docker run --rm -v ${process.cwd()}/temp:/app node:18 node /app/${fileName}`;
+
+        command = isRender
+          ? `node "${filePath}"`
+          : `docker run --rm -v ${process.cwd()}/temp:/app node:18 node /app/${fileName}`;
+
         break;
 
       case "python":
-        command = `docker run --rm -v ${process.cwd()}/temp:/app python:3.10 python /app/${fileName}`;
+
+        command = isRender
+          ? `python "${filePath}"`
+          : `docker run --rm -v ${process.cwd()}/temp:/app python:3.10 python /app/${fileName}`;
+
         break;
 
       case "cpp":
-        command =
-          `docker run --rm -v ${process.cwd()}/temp:/app gcc:latest sh -c "g++ /app/${fileName} -o /app/a.out && /app/a.out"`;
+
+        command = isRender
+          ? `g++ "${filePath}" -o "${tempDir}/a.out" && "${tempDir}/a.out"`
+          : `docker run --rm -v ${process.cwd()}/temp:/app gcc:latest sh -c "g++ /app/${fileName} -o /app/a.out && /app/a.out"`;
+
         break;
 
       case "java":
-        command =
-          `docker run --rm -v ${process.cwd()}/temp:/app openjdk:17 sh -c "javac /app/${fileName} && java -cp /app Main"`;
+
+        command = isRender
+          ? `javac "${filePath}" && java -cp "${tempDir}" Main`
+          : `docker run --rm -v ${process.cwd()}/temp:/app openjdk:17 sh -c "javac /app/${fileName} && java -cp /app Main"`;
+
         break;
 
     }
@@ -85,44 +116,62 @@ fs.writeFileSync(filePath, code);
     return new Promise<Response>((resolve) => {
 
       exec(
+
         command,
         { timeout: 3000 },
 
         (error, stdout, stderr) => {
 
           try {
+
             fs.unlinkSync(filePath);
+
           } catch {}
 
           resolve(
+
             NextResponse.json({
+
               run: {
-               output:
-  error
-    ? (stderr || error.message || "")
-        .toString()
-        .split("\n")
-        .filter(line =>
-          !line.includes("internal") &&
-          !line.includes("Module._compile") &&
-          !line.includes("at ")
-        )
-        .join("\n")
-    : stdout.toString()
+
+                output: error
+                  ? (stderr || error.message || "")
+                      .toString()
+                      .split("\n")
+                      .filter(line =>
+                        !line.includes("internal") &&
+                        !line.includes("Module._compile") &&
+                        !line.includes("at ")
+                      )
+                      .join("\n")
+                  : stdout.toString()
+
               }
+
             })
+
           );
+
         }
+
       );
 
     });
-} catch (error: unknown) {
-  const err = error as Error;
 
-  return NextResponse.json({
-    run: {
-      output: err.message
-    }
-  });
-}
+  }
+
+  catch (error: unknown) {
+
+    const err = error as Error;
+
+    return NextResponse.json({
+
+      run: {
+        output: err.message
+      }
+
+    });
+
+  }
+
 }
