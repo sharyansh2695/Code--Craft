@@ -108,14 +108,13 @@ export async function POST(req: NextRequest) {
       );
 
     });
+} catch (error: unknown) {
+  const err = error as Error;
 
-  } catch (error: any) {
-
-    return NextResponse.json({
-      run: {
-        output: error.message
-      }
-    });
-
-  }
+  return NextResponse.json({
+    run: {
+      output: err.message
+    }
+  });
+}
 }
